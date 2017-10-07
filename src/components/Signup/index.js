@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase from '../../lib/firebase'
 import RaisedButton from 'material-ui/RaisedButton'
+import Teeth from '../../teeth.svg'
 
 const Signup = () => {
   const onButtonClicked = () => {
@@ -10,13 +11,16 @@ const Signup = () => {
 
   return (
     <div>
-      <h3>Cheeewingは、噛むことを促進するサービスです！</h3>
-      <h3>たくさん噛んで健康になりましょう！</h3>
-      <h3>噛んだ回数を記録・シェアできます！</h3>
-      <h3>まずはGoogleアカウントでログインしましょう！</h3>
+      <img src={Teeth} alt='logo' />
+      <h2>Cheeewing</h2>
+      <div>噛むことを楽しむサービスです！</div>
+      <div>たくさん噛んで健康になりましょう！</div>
+      <div>まずはGoogleアカウントでログイン！</div>
       <RaisedButton
+        secondary
         label={'Signup by Google'}
         onClick={onButtonClicked}
+        style={{marginTop: 10, marginBottom: 10}}
       />
     </div>
   )

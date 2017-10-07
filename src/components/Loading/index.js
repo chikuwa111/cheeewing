@@ -2,7 +2,7 @@ import React from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
 
 const Loading = () => (
-  <div style={{textAlign: 'center'}}>
+  <div style={{textAlign: 'center', marginTop: window.parent.screen.height / 4}}>
     <h1>Cheeewing!</h1>
     <CircularProgress
       size={120}
