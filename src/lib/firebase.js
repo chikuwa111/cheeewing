@@ -6,7 +6,7 @@ const initializeFirebase = () => {
     authDomain: 'cheeewing-e76f6.firebaseapp.com',
     databaseURL: 'https://cheeewing-e76f6.firebaseio.com',
     projectId: 'cheeewing-e76f6',
-    storageBucket: '',
+    storageBucket: 'cheeewing-e76f6.appspot.com',
     messagingSenderId: '486843478411',
   }
   firebase.initializeApp(config)
