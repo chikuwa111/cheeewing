@@ -58,7 +58,7 @@ class Home extends React.Component {
           total ? (
             <h4>Total: {total}</h4>
           ) : (
-            <h4>まだ一回も記録してないみたいだね...</h4>
+            <h4>まだ一回も噛んでないみたいだね...</h4>
           )
         )}
         {chewsLoading ? (

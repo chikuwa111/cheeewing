@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import RaisedButton from 'material-ui/RaisedButton'
 import firebase from '../../lib/firebase'
+import Teeth from '../../teeth.svg'
 
 class ChewCounter extends React.Component {
   constructor(props) {
@@ -35,15 +36,17 @@ class ChewCounter extends React.Component {
       this.autoIncrement = setInterval(() => {
         this.setState({
           count: this.state.count + 1,
-          auto: true,
         })
       }, 1000)
+      this.setState({
+        auto: true,
+      })
     }
   }
 
   onSubmit() {
-    const {uid, displayName} = this.props.currentUser
     const {count} = this.state
+    const {uid, displayName} = this.props.currentUser
     firebase.database().ref(`chews/${uid}`).push({
       count,
       date: moment().format('HH:mm:ss'),
@@ -66,30 +69,33 @@ class ChewCounter extends React.Component {
     const {count, submitted, auto} = this.state
     return (
       <div>
-        <div>ChewCounter</div>
         {submitted ? (
           <div>
             <h2>よく噛みました！</h2>
+            <img src={Teeth} alt='logo' />
           </div>
         ) : (
           <div>
+            <h4>噛んだ回数を記録しましょう！</h4>
             <div>Count</div>
-            <div>{count}</div>
+            <h1>{count}</h1>
             <RaisedButton
               secondary
               label={'Cheeew!!!'}
               onClick={this.onAddClicked.bind(this)}
-              style={{width: '80%', height: 200}}
+              style={{width: '80%', height: 200, marginBottom: 20}}
             />
             <RaisedButton
               label={`${auto ? 'Stop' : 'Start'} AutoMode`}
               onClick={this.toggleAutoIncrement.bind(this)}
             />
-            <br/>
+            <div>(AutoModeを使うと1秒に1増えます)</div>
             <RaisedButton
               primary
-              label={'Submit!!!'}
+              label={'送信!!!'}
               onClick={this.onSubmit.bind(this)}
+              disabled={count === 0}
+              style={{marginTop: 20}}
             />
           </div>
         )}

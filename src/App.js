@@ -15,7 +15,7 @@ import Ranking from './components/Ranking'
 const Header = () => (
   <div style={{display: 'flex', justifyContent: 'space-around'}}>
     <span><Link to='/'>Home</Link></span>
-    <span><Link to='/count'>Count</Link></span>
+    <span><Link to='/chew'>Cheeew!</Link></span>
     <span><Link to='/ranking'>Ranking</Link></span>
   </div>
 )
@@ -65,7 +65,7 @@ class App extends React.Component {
                   <Header />
                   <hr/>
                   <Route exact path='/' render={() => <Home {...this.state} />}/>
-                  <Route path='/count' render={() => <ChewCounter {...this.state} />}/>
+                  <Route path='/chew' render={() => <ChewCounter {...this.state} />}/>
                   <Route path='/ranking' render={() => <Ranking {...this.state} />}/>
                 </div>
               </Router>
