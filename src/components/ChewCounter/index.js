@@ -27,7 +27,7 @@ class ChewCounter extends React.Component {
     const {count} = this.state
     firebase.database().ref(`chews/${uid}`).push({
       count,
-      date: moment().unix(),
+      date: moment().format('HH:mm:ss'),
     })
     firebase.database().ref(`total/${uid}`).once('value')
     .then((value) => {

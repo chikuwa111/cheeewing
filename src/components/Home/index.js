@@ -1,4 +1,11 @@
 import React from 'react'
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+} from 'recharts'
 import firebase from '../../lib/firebase'
 
 class Home extends React.Component {
@@ -58,7 +65,14 @@ class Home extends React.Component {
           <h4>Chews Loading</h4>
         ) : (
           chews ? (
-            <h4>Chews: {chews.join(',')}</h4>
+            <div style={{overFlow: 'scroll'}}>
+              <LineChart width={window.parent.screen.width - 20} height={400} data={chews} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                <Line type='monotone' dataKey='count' stroke='#8884d8' />
+                <CartesianGrid stroke='#ccc' strokeDasharray='5 5' />
+                <XAxis dataKey='date' />
+                <YAxis />
+              </LineChart>
+            </div>
           ) : (
             <h4>まだ一回も記録してないみたいだね...</h4>
           )

@@ -10,11 +10,13 @@ import Loading from './components/Loading'
 import Signup from './components/Signup'
 import Home from './components/Home'
 import ChewCounter from './components/ChewCounter'
+import Ranking from './components/Ranking'
 
 const Header = () => (
   <div style={{display: 'flex', justifyContent: 'space-around'}}>
     <span><Link to='/'>Home</Link></span>
     <span><Link to='/count'>Count</Link></span>
+    <span><Link to='/ranking'>Ranking</Link></span>
   </div>
 )
 
@@ -65,6 +67,7 @@ class App extends React.Component {
                   <hr/>
                   <Route exact path='/' render={() => <Home {...this.state} />}/>
                   <Route path='/count' render={() => <ChewCounter {...this.state} />}/>
+                  <Route path='/ranking' render={() => <Ranking {...this.state} />}/>
                 </div>
               </Router>
             )
