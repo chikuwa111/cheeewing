@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import RaisedButton from 'material-ui/RaisedButton'
 import firebase from '../../lib/firebase'
 
@@ -22,10 +23,19 @@ class ChewCounter extends React.Component {
   }
 
   onSubmit() {
-    const {uid} = this.props.currentUser
+    const {uid, displayName} = this.props.currentUser
+    const {count} = this.state
     firebase.database().ref(`chews/${uid}`).push({
-      count: this.state.count,
-      date: new Date(),
+      count,
+      date: moment().unix(),
+    })
+    firebase.database().ref(`total/${uid}`).once('value')
+    .then((value) => {
+      const total = value.val() ? value.val().total + count : count
+      firebase.database().ref(`total/${uid}`).set({
+        total,
+        name: displayName,
+      })
     })
     this.setState({
       count: 0,
@@ -50,7 +60,7 @@ class ChewCounter extends React.Component {
               secondary
               label={'Cheeew!!!'}
               onClick={this.onAddClicked.bind(this)}
-              style={{width: 120, height: 100}}
+              style={{width: '80%', height: 200}}
             />
             <br/>
             <RaisedButton
