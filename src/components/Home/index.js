@@ -53,7 +53,7 @@ class Home extends React.Component {
       <div>
         <h3>{currentUser.displayName}</h3>
         {totalLoading ? (
-          <h4>Total Loading</h4>
+          <h4>Total Loading...</h4>
         ) : (
           total ? (
             <h4>Total: {total}</h4>
@@ -62,9 +62,9 @@ class Home extends React.Component {
           )
         )}
         {chewsLoading ? (
-          <h4>Chews Loading</h4>
+          <h4>Graph Loading...</h4>
         ) : (
-          chews ? (
+          chews && (
             <div style={{overFlow: 'scroll'}}>
               <LineChart width={window.parent.screen.width - 20} height={400} data={chews} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                 <Line type='monotone' dataKey='count' stroke='#8884d8' />
@@ -73,8 +73,6 @@ class Home extends React.Component {
                 <YAxis />
               </LineChart>
             </div>
-          ) : (
-            <h4>まだ一回も記録してないみたいだね...</h4>
           )
         )}
       </div>

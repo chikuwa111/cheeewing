@@ -7,12 +7,14 @@ class ChewCounter extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
+    this.autoIncrement = null
   }
 
   get initialState() {
     return {
       count: 0,
       submitted: false,
+      auto: false,
     }
   }
 
@@ -20,6 +22,23 @@ class ChewCounter extends React.Component {
     this.setState({
       count: this.state.count + 1,
     })
+  }
+
+  toggleAutoIncrement() {
+    if (this.autoIncrement) {
+      clearInterval(this.autoIncrement)
+      this.autoIncrement = null
+      this.setState({
+        auto: false,
+      })
+    } else {
+      this.autoIncrement = setInterval(() => {
+        this.setState({
+          count: this.state.count + 1,
+          auto: true,
+        })
+      }, 1000)
+    }
   }
 
   onSubmit() {
@@ -44,7 +63,7 @@ class ChewCounter extends React.Component {
   }
 
   render() {
-    const {count, submitted} = this.state
+    const {count, submitted, auto} = this.state
     return (
       <div>
         <div>ChewCounter</div>
@@ -61,6 +80,10 @@ class ChewCounter extends React.Component {
               label={'Cheeew!!!'}
               onClick={this.onAddClicked.bind(this)}
               style={{width: '80%', height: 200}}
+            />
+            <RaisedButton
+              label={`${auto ? 'Stop' : 'Start'} AutoMode`}
+              onClick={this.toggleAutoIncrement.bind(this)}
             />
             <br/>
             <RaisedButton
