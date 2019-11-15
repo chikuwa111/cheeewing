@@ -46,7 +46,7 @@ class ChewCounter extends React.Component {
 
   onSubmit() {
     const {count} = this.state
-    const {uid, displayName} = this.props.currentUser
+    const {uid} = this.props.currentUser
     firebase.database().ref(`chews/${uid}`).push({
       count,
       date: moment().format('HH:mm:ss'),
@@ -56,7 +56,6 @@ class ChewCounter extends React.Component {
       const total = value.val() ? value.val().total + count : count
       firebase.database().ref(`total/${uid}`).set({
         total,
-        name: displayName,
       })
     })
     this.setState({

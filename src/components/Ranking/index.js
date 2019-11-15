@@ -49,15 +49,13 @@ class Ranking extends React.Component {
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn>Rank</TableHeaderColumn>
-                <TableHeaderColumn>Name</TableHeaderColumn>
                 <TableHeaderColumn>Score</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody displayRowCheckbox={false}>
               {ranking.map((data, index) => (
-                <TableRow key={data.name}>
+                <TableRow key={data.index}>
                   <TableRowColumn>{index + 1}</TableRowColumn>
-                  <TableRowColumn>{data.name}</TableRowColumn>
                   <TableRowColumn>{data.total}</TableRowColumn>
                 </TableRow>
               ))}
